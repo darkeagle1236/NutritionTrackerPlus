@@ -5,16 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.nutritiontracker.EditUserActivity;
+import com.example.nutritiontracker.user.EditUserActivity;
 import com.example.nutritiontracker.R;
-import com.example.nutritiontracker.add.addexercise.AddExcerciseActivity;
-import com.example.nutritiontracker.add.addfood.AddFoodActivity;
 
 public class AddFragment extends Fragment {
     TextView tvEdit,tvExit;
