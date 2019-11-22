@@ -15,7 +15,7 @@
         android:id="@+id/navigation_add"
         android:name="com.example.nutritiontracker.add.AddFragment"
         android:label="Add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_setting" />
 
     <fragment
         android:id="@+id/navigation_exercise"

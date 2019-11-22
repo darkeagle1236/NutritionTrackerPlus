@@ -18,8 +18,8 @@
         android:id="@+id/navigation_add"
         android:width="100dp"
         android:height="100dp"
-        android:title="ADD"
-        android:icon="@drawable/ic_add"
+        android:title="SETTINGS"
+        android:icon="@drawable/settings"
         android:gravity="top|center">
         <shape android:shape="oval">
             <solid android:color="@color/primaryDarkColor" />

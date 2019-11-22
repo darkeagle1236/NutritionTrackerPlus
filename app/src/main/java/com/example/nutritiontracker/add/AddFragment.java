@@ -6,39 +6,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.nutritiontracker.EditUserActivity;
 import com.example.nutritiontracker.R;
 import com.example.nutritiontracker.add.addexercise.AddExcerciseActivity;
 import com.example.nutritiontracker.add.addfood.AddFoodActivity;
 
 public class AddFragment extends Fragment {
-    Button btnFood,btnExercise;
+    TextView tvEdit,tvExit;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_add, container, false);
+        View view= inflater.inflate(R.layout.fragment_setting, container, false);
         initUI(view);
         return view;
     }
 
     private void initUI(View view) {
-        btnFood = view.findViewById(R.id.btnFood);
-        btnExercise = view.findViewById(R.id.btnExercise);
-        btnFood.setOnClickListener(new View.OnClickListener() {
+        tvEdit = view.findViewById(R.id.tvEdit);
+        tvExit = view.findViewById(R.id.tvExit);
+        tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AddFoodActivity.class);
+                Intent intent = new Intent(view.getContext(), EditUserActivity.class);
                 startActivity(intent);
             }
         });
-        btnExercise.setOnClickListener(new View.OnClickListener() {
+        tvExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AddExcerciseActivity.class);
-                startActivity(intent);
+                System.exit(0);
             }
         });
     }
