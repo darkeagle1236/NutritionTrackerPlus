@@ -64,7 +64,7 @@ public class AddFoodActivity extends AppCompatActivity implements AdditionContra
         rclvFood = findViewById(R.id.rclvFood);
         foodList = new ArrayList<>();
         adapter = new AddFoodAdapter(this, foodList);
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         rclvFood.setLayoutManager(mLayoutManager);
         rclvFood.setItemAnimator(new DefaultItemAnimator());
         rclvFood.setAdapter(adapter);

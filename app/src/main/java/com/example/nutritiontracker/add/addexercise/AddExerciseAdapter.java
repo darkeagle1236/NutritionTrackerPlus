@@ -1,9 +1,12 @@
 package com.example.nutritiontracker.add.addexercise;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +30,7 @@ public class AddExerciseAdapter extends RecyclerView.Adapter<AddExerciseAdapter.
         public final View mView;
 
         TextView tvExerciseName,tvUserInput,tvCalories,tvDuration;
+        ImageView ivDelete;
         CustomViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
@@ -34,6 +38,7 @@ public class AddExerciseAdapter extends RecyclerView.Adapter<AddExerciseAdapter.
             tvUserInput = mView.findViewById(R.id.tvUserInput);
             tvCalories = mView.findViewById(R.id.tvCalories);
             tvDuration = mView.findViewById(R.id.tvDuration);
+            ivDelete = mView.findViewById(R.id.ivDelete);
         }
     }
 
@@ -45,11 +50,35 @@ public class AddExerciseAdapter extends RecyclerView.Adapter<AddExerciseAdapter.
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomViewHolder holder, int position) {
         holder.tvExerciseName.setText(exerciseList.get(position).getName());
         holder.tvCalories.setText("Calories burned : "+exerciseList.get(position).getNfCalories());
         holder.tvDuration.setText("Duration : " + exerciseList.get(position).getDurationMin()+" (mins)");
         holder.tvUserInput.setText("("+exerciseList.get(position).getUserInput() +")");
+        holder.ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                exerciseList.remove(holder.getAdapterPosition());
+                                notifyDataSetChanged();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+            }
+        });
     }
 
     @Override
