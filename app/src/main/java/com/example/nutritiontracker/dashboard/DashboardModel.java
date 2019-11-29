@@ -28,7 +28,7 @@ public class DashboardModel implements DashboardContract.Model {
         Cursor cursor = sqLiteDatabase.query(UserModel.TABLE_NAME, null, null, null, null, null, null);
         cursor.moveToFirst();
         while (cursor.isAfterLast()==false){
-            username =cursor.getString(5);
+            username = cursor.getString(5);
             cursor.moveToNext();
         }
         return username;

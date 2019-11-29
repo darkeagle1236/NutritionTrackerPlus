@@ -72,12 +72,13 @@ public class UserModel implements UserContract.Model {
         return list;
     }
     @Override
-    public int updateUser(String id,String gender,String weight,String height,String age){
+    public int updateUser(String id,String name,String gender,String weight,String height,String age){
         ContentValues values = new ContentValues();
         values.put("gender",gender);
         values.put("weight",weight);
         values.put("height",height);
         values.put("age",age);
+        values.put("username",name);
         return sqLiteDatabase.update(TABLE_NAME,values,"id=?",new String[]{id});
     }
 }

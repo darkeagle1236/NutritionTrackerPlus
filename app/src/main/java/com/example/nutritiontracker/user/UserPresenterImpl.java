@@ -47,4 +47,9 @@ public class UserPresenterImpl implements UserContract.Presenter {
             iView.startCreateUserActivity();
         }
     }
+
+    @Override
+    public void changeUserInfo(User user) {
+        iModel.updateUser("1",user.getUsername(),user.getGender(),user.getWeight(),user.getHeight(),user.getAge());
+    }
 }

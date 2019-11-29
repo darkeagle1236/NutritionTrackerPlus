@@ -6,7 +6,7 @@ public interface UserContract {
     interface Model{
         int insertUser(User user);
         List<User> getAllUser();
-        int updateUser(String id, String gender, String weight, String height, String age);
+        int updateUser(String id,String name, String gender, String weight, String height, String age);
     }
     interface View{
         User getUserInfo();
@@ -18,5 +18,6 @@ public interface UserContract {
         int insertUser();
         void onBtnSubmitClicked();
         void onSplashFinished();
+        void changeUserInfo(User user);
     }
 }
