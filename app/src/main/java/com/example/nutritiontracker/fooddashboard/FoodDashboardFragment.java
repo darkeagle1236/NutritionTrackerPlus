@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nutritiontracker.R;
-import com.example.nutritiontracker.activity.MainActivity;
 import com.example.nutritiontracker.add.addfood.AddFoodActivity;
 import com.example.nutritiontracker.food.Food;
+import com.example.nutritiontracker.food.ParentFood;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -26,10 +26,9 @@ import java.util.List;
 public class FoodDashboardFragment extends Fragment implements FoodDashboardContract.View {
     Context context;
     RecyclerView rclvFood;
-    FoodDashboardAdapter adapter;
+    ParentFoodDashboardAdapter adapter;
     RecyclerView.LayoutManager mLayoutManager;
-    List<Food> foodList;
-    TextView tvCalories;
+    List<ParentFood> parentFoodList;
     FloatingActionButton fab;
     FoodDashboardContract.Presenter presenter;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,20 +38,19 @@ public class FoodDashboardFragment extends Fragment implements FoodDashboardCont
         presenter = new FoodDashboardPresenterImpl(this);
         initUI(root);
         presenter.setDataToRecyclerView();
-        tvCalories.setText(presenter.getTextMessage(foodList));
+//        tvCalories.setText(presenter.getTextMessage(parentFoodList));
         return root;
     }
 
     @Override
     public void initUI(View view) {
-        foodList = new ArrayList<>();
+        parentFoodList = new ArrayList<>();
         rclvFood = view.findViewById(R.id.rclvFood);
-        adapter = new FoodDashboardAdapter(view.getContext(), foodList);
-        mLayoutManager = new LinearLayoutManager(view.getContext(),RecyclerView.HORIZONTAL,false);
+        adapter = new ParentFoodDashboardAdapter(view.getContext(), parentFoodList);
+        mLayoutManager = new LinearLayoutManager(view.getContext(),RecyclerView.VERTICAL,false);
         rclvFood.setLayoutManager(mLayoutManager);
         rclvFood.setItemAnimator(new DefaultItemAnimator());
         rclvFood.setAdapter(adapter);
-        tvCalories = view.findViewById(R.id.tvCalories);
         fab = (FloatingActionButton)  view.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +63,8 @@ public class FoodDashboardFragment extends Fragment implements FoodDashboardCont
     }
 
     @Override
-    public void setDataToRecyclerView(List<Food> mfoodList) {
-        foodList.addAll(mfoodList);
+    public void setDataToRecyclerView(List<ParentFood> mfoodList) {
+        parentFoodList.addAll(mfoodList);
         adapter.notifyDataSetChanged();
         rclvFood.setAdapter(adapter);
     }

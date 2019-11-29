@@ -19,7 +19,6 @@ import java.util.List;
 public class AddExerciseAdapter extends RecyclerView.Adapter<AddExerciseAdapter.CustomViewHolder> {
     private List<Exercise> exerciseList;
     private Context context;
-
     public AddExerciseAdapter(Context context, List<Exercise> exerciseList){
         this.context = context;
         this.exerciseList = exerciseList;

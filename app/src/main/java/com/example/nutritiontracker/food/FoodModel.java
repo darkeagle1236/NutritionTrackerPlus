@@ -11,8 +11,10 @@ import com.example.nutritiontracker.fooddashboard.FoodDashboardContract;
 import com.example.nutritiontracker.network.GetDataService;
 import com.example.nutritiontracker.network.RetrofitClientInstance;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -79,9 +81,7 @@ public class FoodModel implements AdditionContract.Model.FoodModel, FoodDashboar
     }
 
     @Override
-    public List<Food> getFoodListFromDbByDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
-        String date = simpleDateFormat.format(new Date());
+    public List<Food> getFoodListFromDbByDate(String date) {
         String whereClause = "datetime = ?";
         String[] whereArgs = {date};
         List<Food> list = new ArrayList<Food>();
@@ -116,6 +116,31 @@ public class FoodModel implements AdditionContract.Model.FoodModel, FoodDashboar
     @Override
     public void deleteFood(Food food) {
 
+    }
+
+    @Override
+    public List<ParentFood> getParentFoodList() {
+        List<ParentFood> parentFoods = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME,null,null,null
+                ,"datetime",null,"datetime desc");
+        cursor.moveToFirst();
+        while (cursor.isAfterLast()==false){
+            ParentFood parentFood = new ParentFood();
+            parentFood.setFoodList(getFoodListFromDbByDate(cursor.getString(14)));
+            try {
+                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(cursor.getString(14));
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date1);
+                System.out.println(date1.toString());
+                parentFood.setDate(calendar.get(Calendar.DAY_OF_MONTH)+"/"+(calendar.get(Calendar.MONTH)+1));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            parentFoods.add(parentFood);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return parentFoods;
     }
 
     @Override

@@ -17,7 +17,7 @@ public class FoodDashboardPresenterImpl implements FoodDashboardContract.Present
 
     @Override
     public void setDataToRecyclerView() {
-        iView.setDataToRecyclerView(iModel.getFoodListFromDbByDate());
+        iView.setDataToRecyclerView(iModel.getParentFoodList());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class FoodDashboardPresenterImpl implements FoodDashboardContract.Present
     @Override
     public String getTotalCaloriesToday() {
         double totalCalories = 0;
-        for(Food food : iModel.getFoodListFromDbByDate()){
+        for(Food food : iModel.getFoodListFromDb()){
             totalCalories += food.getNfCalories();
         }
         NumberFormat formatter = new DecimalFormat("#0.00");
