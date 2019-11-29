@@ -16,27 +16,25 @@ public class ExerciseDashboardPresenterImpl implements ExerciseDashboardContract
 
     @Override
     public void setDataToRecyclerView() {
-        List<Exercise> exerciseList = iModel.getExerciseListFromDbByDate();
-        iView.setDataToRecyclerView(exerciseList);
+        List<ParentExercise> parentExerciseList = iModel.getParentExerciseList();
+        iView.setDataToRecyclerView(parentExerciseList);
     }
 
-    @Override
-    public String getTextMessage(List<Exercise> exerciseList) {
-        if(exerciseList.isEmpty()){
-            return "Nothing here. Add exercises by using the 'ADD' button";
-        }
-        else {
-            return getTotalCaloriesBurnedToday();
-        }
-    }
 
     @Override
     public String getTotalCaloriesBurnedToday() {
-        double totalCaloriesBurned = 0;
-        for(Exercise exercise : iModel.getExerciseListFromDbByDate()){
-            totalCaloriesBurned += exercise.getNfCalories();
-        }
-        NumberFormat formatter = new DecimalFormat("#0.00");
-        return "Total calories burned today : "+formatter.format(totalCaloriesBurned)+"";
+//        double totalCaloriesBurned = 0;
+//        for(Exercise exercise : iModel.getExerciseListFromDb()){
+//            totalCaloriesBurned += exercise.getNfCalories();
+//        }
+//        NumberFormat formatter = new DecimalFormat("#0.00");
+//        return "Total calories burned today : "+formatter.format(totalCaloriesBurned)+"";
+        return "test";
     }
+
+    @Override
+    public int isListEmpty(List<ParentExercise> parentExerciseList) {
+        return parentExerciseList.isEmpty() ? 0 : 8;
+    }
+
 }

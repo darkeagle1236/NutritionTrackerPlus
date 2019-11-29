@@ -9,16 +9,17 @@ import java.util.List;
 public interface ExerciseDashboardContract {
     interface Model{
         List<Exercise> getExerciseListFromDb();
-        List<Exercise> getExerciseListFromDbByDate();
+        List<Exercise> getExerciseListFromDbByDate(String date);
+        List<ParentExercise> getParentExerciseList();
     }
     interface View{
         Context getContext();
         void initUI(android.view.View view);
-        void setDataToRecyclerView(List<Exercise> mExerciseList);
+        void setDataToRecyclerView(List<ParentExercise> parentExerciseList);
     }
     interface Presenter{
         void setDataToRecyclerView();
-        String getTextMessage(List<Exercise> exerciseList);
         String getTotalCaloriesBurnedToday();
+        int isListEmpty(List<ParentExercise> parentExerciseList);
     }
 }

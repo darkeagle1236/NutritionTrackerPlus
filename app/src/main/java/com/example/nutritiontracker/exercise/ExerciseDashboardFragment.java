@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nutritiontracker.R;
 import com.example.nutritiontracker.add.addexercise.AddExcerciseActivity;
-import com.example.nutritiontracker.add.addfood.AddFoodActivity;
-import com.example.nutritiontracker.fooddashboard.FoodDashboardAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -26,10 +24,10 @@ import java.util.List;
 public class ExerciseDashboardFragment extends Fragment implements ExerciseDashboardContract.View {
     Context context;
     RecyclerView rclvExercise;
-    ExerciseDashboardAdapter adapter;
+    ParentExerciseDashboardAdapter adapter;
     RecyclerView.LayoutManager mLayoutManager;
-    List<Exercise> exerciseList;
-    TextView tvCalories;;
+    List<ParentExercise> parentExerciseList;
+    TextView tvCalories;
     FloatingActionButton fab;
     ExerciseDashboardContract.Presenter presenter;
 
@@ -40,15 +38,15 @@ public class ExerciseDashboardFragment extends Fragment implements ExerciseDashb
         presenter = new ExerciseDashboardPresenterImpl(this);
         initUI(root);
         presenter.setDataToRecyclerView();
-        tvCalories.setText(presenter.getTextMessage(exerciseList));
+        tvCalories.setVisibility(presenter.isListEmpty(parentExerciseList));
         return root;
     }
 
     @Override
     public void initUI(View view) {
-        exerciseList = new ArrayList<>();
+        parentExerciseList = new ArrayList<>();
         rclvExercise = view.findViewById(R.id.rclvExercises);
-        adapter = new ExerciseDashboardAdapter(view.getContext(), exerciseList);
+        adapter = new ParentExerciseDashboardAdapter(view.getContext(), parentExerciseList);
         mLayoutManager = new LinearLayoutManager(view.getContext());
         rclvExercise.setLayoutManager(mLayoutManager);
         rclvExercise.setItemAnimator(new DefaultItemAnimator());
@@ -65,8 +63,8 @@ public class ExerciseDashboardFragment extends Fragment implements ExerciseDashb
     }
 
     @Override
-    public void setDataToRecyclerView(List<Exercise> mExerciseList) {
-        exerciseList.addAll(mExerciseList);
+    public void setDataToRecyclerView(List<ParentExercise> exerciseList) {
+        parentExerciseList.addAll(exerciseList);
         adapter.notifyDataSetChanged();
         rclvExercise.setAdapter(adapter);
     }

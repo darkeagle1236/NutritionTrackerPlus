@@ -7,12 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.nutritiontracker.add.AdditionContract;
 import com.example.nutritiontracker.database.DatabaseHelper;
+import com.example.nutritiontracker.food.ParentFood;
 import com.example.nutritiontracker.network.GetDataService;
 import com.example.nutritiontracker.network.RetrofitClientInstance;
 import com.example.nutritiontracker.user.User;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -82,9 +85,7 @@ public class ExerciseModel implements AdditionContract.Model.ExerciseModel, Exer
     }
 
     @Override
-    public List<Exercise> getExerciseListFromDbByDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
-        String date = simpleDateFormat.format(new Date());
+    public List<Exercise> getExerciseListFromDbByDate(String date) {
         String whereClause = "datetime = ?";
         String[] whereArgs = {date};
         List<Exercise> list = new ArrayList<Exercise>();
@@ -103,5 +104,30 @@ public class ExerciseModel implements AdditionContract.Model.ExerciseModel, Exer
         }
         cursor.close();
         return list;
+    }
+
+    @Override
+    public List<ParentExercise> getParentExerciseList() {
+        List<ParentExercise> parentExerciseList = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME,null,null,null
+                ,"datetime",null,"datetime desc");
+        cursor.moveToFirst();
+        while (cursor.isAfterLast()==false){
+            ParentExercise parentExercise = new ParentExercise();
+            parentExercise.setExerciseList(getExerciseListFromDbByDate(cursor.getString(5)));
+            try {
+                Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(cursor.getString(5));
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date1);
+                System.out.println(date1.toString());
+                parentExercise.setDate(calendar.get(Calendar.DAY_OF_MONTH)+"/"+(calendar.get(Calendar.MONTH)+1));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            parentExerciseList.add(parentExercise);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return parentExerciseList;
     }
 }

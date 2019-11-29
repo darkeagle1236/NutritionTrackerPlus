@@ -31,6 +31,7 @@ public class FoodDashboardFragment extends Fragment implements FoodDashboardCont
     List<ParentFood> parentFoodList;
     FloatingActionButton fab;
     FoodDashboardContract.Presenter presenter;
+    TextView tvCalories;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_food, container, false);
@@ -38,7 +39,7 @@ public class FoodDashboardFragment extends Fragment implements FoodDashboardCont
         presenter = new FoodDashboardPresenterImpl(this);
         initUI(root);
         presenter.setDataToRecyclerView();
-//        tvCalories.setText(presenter.getTextMessage(parentFoodList));
+        tvCalories.setVisibility(presenter.isListEmpty(parentFoodList));
         return root;
     }
 
@@ -51,6 +52,7 @@ public class FoodDashboardFragment extends Fragment implements FoodDashboardCont
         rclvFood.setLayoutManager(mLayoutManager);
         rclvFood.setItemAnimator(new DefaultItemAnimator());
         rclvFood.setAdapter(adapter);
+        tvCalories = view.findViewById(R.id.tvCalories);
         fab = (FloatingActionButton)  view.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

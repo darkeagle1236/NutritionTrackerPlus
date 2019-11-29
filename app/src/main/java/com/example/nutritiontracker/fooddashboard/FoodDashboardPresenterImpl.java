@@ -2,6 +2,7 @@ package com.example.nutritiontracker.fooddashboard;
 
 import com.example.nutritiontracker.food.Food;
 import com.example.nutritiontracker.food.FoodModel;
+import com.example.nutritiontracker.food.ParentFood;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -21,16 +22,6 @@ public class FoodDashboardPresenterImpl implements FoodDashboardContract.Present
     }
 
     @Override
-    public String getTextMessage(List<Food> foodList) {
-        if(foodList.isEmpty()){
-            return "Nothing here. Add foods by using the 'ADD' button";
-        }
-        else {
-            return getTotalCaloriesToday();
-        }
-    }
-
-    @Override
     public String getTotalCaloriesToday() {
         double totalCalories = 0;
         for(Food food : iModel.getFoodListFromDb()){
@@ -38,5 +29,10 @@ public class FoodDashboardPresenterImpl implements FoodDashboardContract.Present
         }
         NumberFormat formatter = new DecimalFormat("#0.00");
         return "Total calories burned today : "+formatter.format(totalCalories)+"";
+    }
+
+    @Override
+    public int isListEmpty(List<ParentFood> mfoodList) {
+        return mfoodList.isEmpty() ? 0 : 8;
     }
 }

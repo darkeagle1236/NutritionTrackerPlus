@@ -11,9 +11,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter what you ate to track"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:text="Enter what you ate today"
+        android:textSize="32sp"
+        android:textColor="@color/primaryColor"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,13 +49,14 @@
                     android:id="@+id/edtFindFood"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:backgroundTint="@color/splashBackground"
                     android:hint="e.g : one egg and 200g spaghetti"
                     android:windowSoftInputMode="adjustResize"></EditText>
 
                 <Button
                     android:id="@+id/btnFind"
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_button"

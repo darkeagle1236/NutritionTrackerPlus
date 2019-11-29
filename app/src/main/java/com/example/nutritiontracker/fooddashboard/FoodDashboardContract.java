@@ -21,7 +21,7 @@ public interface FoodDashboardContract {
     }
     interface Presenter{
         void setDataToRecyclerView();
-        String getTextMessage(List<Food> foodList);
         String getTotalCaloriesToday();
+        int isListEmpty(List<ParentFood> mfoodList);
     }
 }

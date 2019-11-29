@@ -44,7 +44,7 @@ public class ExerciseDashboardAdapter extends RecyclerView.Adapter<ExerciseDashb
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_exercise, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_exercise_vertical, parent, false);
         return new CustomViewHolder(view);
     }
 
