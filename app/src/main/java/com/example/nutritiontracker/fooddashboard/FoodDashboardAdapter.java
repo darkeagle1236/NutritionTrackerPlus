@@ -15,18 +15,34 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nutritiontracker.R;
 import com.example.nutritiontracker.food.Food;
+import com.example.nutritiontracker.food.ParentFood;
 import com.example.nutritiontracker.fooddetail.FoodDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class FoodDashboardAdapter extends RecyclerView.Adapter<FoodDashboardAdapter.CustomViewHolder> {
+public class FoodDashboardAdapter extends RecyclerView.Adapter<FoodDashboardAdapter.CustomViewHolder> implements FoodDashboardContract.View {
     private List<Food> foodList;
     private Context context;
-
+    private FoodDashboardContract.Presenter presenter;
     public FoodDashboardAdapter(Context context, List<Food> foodList){
         this.context = context;
         this.foodList = foodList;
+    }
+
+    @Override
+    public Context getContext() {
+        return context;
+    }
+
+    @Override
+    public void initUI(View view) {
+
+    }
+
+    @Override
+    public void setDataToRecyclerView(List<ParentFood> mfoodList) {
+
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -51,6 +67,7 @@ public class FoodDashboardAdapter extends RecyclerView.Adapter<FoodDashboardAdap
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_food_horizontal, parent, false);
+        presenter = new FoodDashboardPresenterImpl(this);
         return new CustomViewHolder(view);
     }
 
@@ -94,6 +111,7 @@ public class FoodDashboardAdapter extends RecyclerView.Adapter<FoodDashboardAdap
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
+                                presenter.deleteFood(foodList.get(holder.getAdapterPosition()));
                                 foodList.remove(holder.getAdapterPosition());
                                 notifyDataSetChanged();
                                 break;

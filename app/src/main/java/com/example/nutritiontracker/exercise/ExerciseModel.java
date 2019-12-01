@@ -130,4 +130,9 @@ public class ExerciseModel implements AdditionContract.Model.ExerciseModel, Exer
         cursor.close();
         return parentExerciseList;
     }
+
+    @Override
+    public void deleteExercise(Exercise exercise) {
+        sqLiteDatabase.delete(TABLE_NAME,"id = ?",new String[]{exercise.getId()});
+    }
 }

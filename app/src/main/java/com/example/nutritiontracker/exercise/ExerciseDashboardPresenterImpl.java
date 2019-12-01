@@ -37,4 +37,9 @@ public class ExerciseDashboardPresenterImpl implements ExerciseDashboardContract
         return parentExerciseList.isEmpty() ? 0 : 8;
     }
 
+    @Override
+    public void deleteExercise(Exercise exercise) {
+        iModel.deleteExercise(exercise);
+    }
+
 }

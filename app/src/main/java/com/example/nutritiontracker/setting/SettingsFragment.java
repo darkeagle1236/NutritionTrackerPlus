@@ -1,4 +1,4 @@
-package com.example.nutritiontracker.add;
+package com.example.nutritiontracker.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.nutritiontracker.user.EditUserActivity;
 import com.example.nutritiontracker.R;
 
-public class AddFragment extends Fragment {
+public class SettingsFragment extends Fragment {
     TextView tvEdit,tvExit;
     @Nullable
     @Override

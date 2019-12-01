@@ -5,17 +5,18 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".add.addfood.AddFoodActivity">
+    tools:context=".add.addfood.AddFoodActivity"
+    android:background="@drawable/background_food_reverse">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginLeft="16dp"
         android:text="Enter what you ate today"
+        android:textColor="@color/white"
         android:textSize="32sp"
-        android:textColor="@color/primaryColor"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +28,6 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:elevation="10dp"
-        app:cardBackgroundColor="@color/primaryLightColor"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:elevation="10dp"
-        app:cardBackgroundColor="@color/primaryColor"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +118,8 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"/>
 
     <ProgressBar
         android:id="@+id/pb_loading"

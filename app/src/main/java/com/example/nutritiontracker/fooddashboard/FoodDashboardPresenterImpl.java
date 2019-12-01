@@ -35,4 +35,10 @@ public class FoodDashboardPresenterImpl implements FoodDashboardContract.Present
     public int isListEmpty(List<ParentFood> mfoodList) {
         return mfoodList.isEmpty() ? 0 : 8;
     }
+
+    @Override
+    public int deleteFood(Food food) {
+        iModel.deleteFood(food);
+        return 0;
+    }
 }

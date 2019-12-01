@@ -115,7 +115,7 @@ public class FoodModel implements AdditionContract.Model.FoodModel, FoodDashboar
 
     @Override
     public void deleteFood(Food food) {
-
+        sqLiteDatabase.delete(TABLE_NAME,"id = ?",new String[]{food.getFoodId()});
     }
 
     @Override

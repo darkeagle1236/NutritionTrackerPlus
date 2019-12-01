@@ -20,8 +20,8 @@
             android:layout_margin="8dp">
             <ImageView
                 android:id="@+id/ivFood"
-                android:layout_width="150dp"
-                android:layout_height="150dp" />
+                android:layout_width="120dp"
+                android:layout_height="120dp" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"

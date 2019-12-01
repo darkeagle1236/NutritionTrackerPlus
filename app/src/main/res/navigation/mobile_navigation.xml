@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_add"
-        android:name="com.example.nutritiontracker.add.AddFragment"
+        android:name="com.example.nutritiontracker.setting.SettingsFragment"
         android:label="Add"
         tools:layout="@layout/fragment_setting" />
 

@@ -15,13 +15,28 @@ import com.example.nutritiontracker.R;
 
 import java.util.List;
 
-public class ExerciseDashboardAdapter extends RecyclerView.Adapter<ExerciseDashboardAdapter.CustomViewHolder> {
+public class ExerciseDashboardAdapter extends RecyclerView.Adapter<ExerciseDashboardAdapter.CustomViewHolder> implements ExerciseDashboardContract.View {
     private List<Exercise> exerciseList;
     private Context context;
-
+    private ExerciseDashboardContract.Presenter presenter;
     public ExerciseDashboardAdapter(Context context, List<Exercise> exerciseList){
         this.context = context;
         this.exerciseList = exerciseList;
+    }
+
+    @Override
+    public Context getContext() {
+        return context;
+    }
+
+    @Override
+    public void initUI(View view) {
+
+    }
+
+    @Override
+    public void setDataToRecyclerView(List<ParentExercise> parentExerciseList) {
+
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -45,6 +60,7 @@ public class ExerciseDashboardAdapter extends RecyclerView.Adapter<ExerciseDashb
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_exercise_vertical, parent, false);
+        presenter = new ExerciseDashboardPresenterImpl(this);
         return new CustomViewHolder(view);
     }
 
@@ -62,6 +78,7 @@ public class ExerciseDashboardAdapter extends RecyclerView.Adapter<ExerciseDashb
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
+                                presenter.deleteExercise(exerciseList.get(holder.getAdapterPosition()));
                                 exerciseList.remove(holder.getAdapterPosition());
                                 notifyDataSetChanged();
                                 break;

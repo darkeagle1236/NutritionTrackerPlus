@@ -11,6 +11,7 @@ public interface ExerciseDashboardContract {
         List<Exercise> getExerciseListFromDb();
         List<Exercise> getExerciseListFromDbByDate(String date);
         List<ParentExercise> getParentExerciseList();
+        void deleteExercise(Exercise exercise);
     }
     interface View{
         Context getContext();
@@ -21,5 +22,6 @@ public interface ExerciseDashboardContract {
         void setDataToRecyclerView();
         String getTotalCaloriesBurnedToday();
         int isListEmpty(List<ParentExercise> parentExerciseList);
+        void deleteExercise(Exercise exercise);
     }
 }

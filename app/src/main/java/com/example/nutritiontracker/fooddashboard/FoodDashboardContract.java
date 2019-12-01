@@ -23,5 +23,6 @@ public interface FoodDashboardContract {
         void setDataToRecyclerView();
         String getTotalCaloriesToday();
         int isListEmpty(List<ParentFood> mfoodList);
+        int deleteFood(Food food);
     }
 }
