@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/navigation_food"
-        android:name="com.example.nutritiontracker.fooddashboard.FoodDashboardFragment"
+        android:name="com.thanhfong47.nutritiontracker.fooddashboard.FoodDashboardFragment"
         android:label="Food"
         tools:layout="@layout/fragment_food" />
 
     <fragment
         android:id="@+id/navigation_add"
-        android:name="com.example.nutritiontracker.setting.SettingsFragment"
+        android:name="com.thanhfong47.nutritiontracker.setting.SettingsFragment"
         android:label="Add"
         tools:layout="@layout/fragment_setting" />
 
     <fragment
         android:id="@+id/navigation_exercise"
-        android:name="com.example.nutritiontracker.exercise.ExerciseDashboardFragment"
+        android:name="com.thanhfong47.nutritiontracker.exercise.ExerciseDashboardFragment"
         android:label="Exercise"
         tools:layout="@layout/fragment_exercise" />
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.nutritiontracker.dashboard.DashboardFragment"
+        android:name="com.thanhfong47.nutritiontracker.dashboard.DashboardFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" />
 </navigation>
